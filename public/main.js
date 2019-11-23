@@ -20,7 +20,7 @@ async function getNews(url) {
   let response = await fetch(url + apiKey);
   let jsonResponse = await response.json();
   let articlesArray = jsonResponse.articles.slice(0,5);
-  //console.log(jsonResponse);
+  console.log(jsonResponse);
   return articlesArray;
 }
 
@@ -48,39 +48,28 @@ function renderNews(articles) {
   return articles;
 }
 
-// Post Tweet Function
-
-function sendTweets(newsObjects) {
-  let tweetButtons = document.getElementsByClassName('tweet');
-  for (let i = 0; i < tweetButtons.length; i++) {
-    tweetButtons[i].addEventListener('click', function() {
-      Twitter.postStatus(newsObjects[i].url);
-      tweetButtons[i].innerHTML = "Tweeted";
-    }, false);
-  }
-}
 
 // Button Event Listeners
 
 engadget.addEventListener('click', function() {
   main.innerHTML = ' ';
-  getNews(engadgetUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
+  getNews(engadgetUrl).then(articlesArray => renderNews(articlesArray));
 }, false);
 
 
 recode.addEventListener('click', function() {
   main.innerHTML = ' ';
-  getNews(recodeUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
+  getNews(recodeUrl).then(articlesArray => renderNews(articlesArray));
 }, false);
 
 nextWeb.addEventListener('click', function() {
   main.innerHTML = ' ';
-  getNews(nextWebUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
+  getNews(nextWebUrl).then(articlesArray => renderNews(articlesArray));
 }, false);
 
 ign.addEventListener('click', function() {
   main.innerHTML = ' ';
-  getNews(ignUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
+  getNews(ignUrl).then(articlesArray => renderNews(articlesArray));
 }, false);
 function f1()
 {
